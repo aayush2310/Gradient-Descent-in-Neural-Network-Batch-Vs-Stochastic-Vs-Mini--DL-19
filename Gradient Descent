@@ -1,0 +1,40 @@
+Gradient Descent is one of the most popular algorithms to perform optimization and by far the most common way to optimize neural networks.
+
+There are three variants of gradient descent, which differ in how much data we use to compute the gradient of the objective function.Depending on the amount of data,we 
+make a tradeoff between the accuracy of the parameter update and the time it takes to perform an update.
+
+**)Batch GD:-Take the entire dataset and apply GD.If i have 5 epochs then I will update my weights and bias only 5 times.In each epoch I will feed my complete data points 
+          to the epoch and find the loss and update the weights and bias.5 times weight update.Takes less time.
+          Pseudocode:-(50 datapoints)
+                      epoch=10
+                      for i in range(10):
+                                   (An array of 50 items)y_hat=np.dot(X,W)+b
+                                                         Loss
+                                                         update weights and bias using gradient descent
+                                                         print the loss of this epoch
+                                                         
+                                                         
+                                                         
+          
+                                   
+           Code:-
+                   for i in range(nb_epochs):
+                                  params_grad=evaluate_gradient(loss_function,data,params)
+                                  params=params-learning_rate*params_grad
+                                  
+                  
+                  
+                  
+**)Stochastic GD:-Here we run 10 epochs and in each epoch we have 50 data points,first shuffle the dataset and then pick one datapoint,find loss and update weight and bias
+                  Then pick another and do the same the process being repeated 50 times for each datapoint before entering the next epoch.
+                  500 times weight update.Bias reduced due to shuffling.
+                  Code:- 
+                          for i in range(nb_epochs):
+                                  np.random.shuffle(data)
+                                  for example in data:
+                                       params_grad=evaluate_gradient(loss_function,example,params)
+                                       params=params-learning_rate*params_grad
+                                       
+                                       
+ ***)If batch_size==1=>stochastic GD
+     If batch_size==number of rows=>Batch GD
