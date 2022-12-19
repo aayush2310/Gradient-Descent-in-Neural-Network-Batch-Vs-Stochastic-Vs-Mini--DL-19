@@ -1,0 +1,26 @@
+#PSEUDO CODE
+for i in range(nb_epochs):
+    np.random.shuffle(data)
+    for batch in get_batches(data,batch_size=50):
+            params_grad = evaluate_gradient(loss_function,batch,params)
+            params=params-learning_rate*params_grad
+            
+
+
+for i in epochs
+     data_shuffle
+     for j in number_of_batches
+             1 batch
+                 y_pred
+                 loss
+                 update
+                 
+In keras we have a parameter of batch_size
+Properties in between SGD and BGD
+
+Why is batch_size parameter in powers of 2 ?
+=>It is done so in order to utilize the RAM effectively.Our RAM is designed to handle binary values and keras if given batch size in power of 2 then can manage RAM 
+  effectively.So,it is an optimization technique.
+  
+What if batch size does not perfectly divide the number of rows?
+=>400 rows,batch of 150,so distribution=>150,150,100
