@@ -1,0 +1,10 @@
+In Batch GD,we have not used the inner loop
+
+epoch=10
+for i in range(10)
+     y_hat=np.dot(X,W)+b
+     
+In Batch GD,we are running only one single loop,i.e of epochs.In epochs we are finding the y_hat of all the rows.But if I want the prediction of all the rows,then I should
+have run loop on all the rows,but that we did not do because we are using dot product over here.and dot product is a smart replacement of loops.This is known as 
+vectorizaton where we use dot product instead of loop and this is faster,bcz it is optimized.
+The downside of vectorization is that in this method we are loading the whole dataset on the dot function in ram and in ram it might not be possible to load this.
