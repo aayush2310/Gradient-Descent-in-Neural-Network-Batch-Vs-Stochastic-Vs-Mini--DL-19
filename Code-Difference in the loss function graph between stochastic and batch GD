@@ -1,0 +1,58 @@
+import numpy as np
+import pandas as pd
+import time
+
+df=pd.read_csv('/content/Social_Network_Ads.csv')
+
+df.head()
+
+df=df[['Age','EstimatedSalary','Purchased']]
+
+df.head()
+
+X=df.iloc[:,0:2]
+y=df.iloc[:,-]
+
+X
+
+from sklearn.preprocessing import StandardScaler
+scaler=StandardScaler()
+
+X_scaled=scaler.fit_transform(X)
+
+#from sklearn.model_selection import train_test_split
+#X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=2)
+
+#X_train.shape
+
+import tensorflow as tf
+from tensorflow import keras
+from keras import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+
+model.add(Dense(10,activation='relu',input_dim=2))
+model.add(Dense(10,activation='relu'))
+model.add(Dense(1,activation='sigmoid'))
+
+model.summary()
+
+model.compile(loss='binary_crossentropy',metrics=['accuracy'])
+#start=time.time()
+history=model.fit(X_scaled,y,epochs=500,batch_size=1,validation_split=0.2)               #STOCHASTIC GD
+#print(time.time()-start)
+
+
+import matplotlib.pyplot as plt
+plt.plot(history.history['loss'])
+
+#We have plotted loss for the stochastic GD,we see that the loss decreses,but there is a spiky nature towards the reduced portion which is not so in Batch GD.It is
+smooth in Batch GD.
+In Stochastic GD,we randomly pick up the point every time and do our updates on the basis of that point,whereas in Batch GD,we ask every point and make update once.
+In SGD,decision making is done by a single random point whereas in BGD whole dataset makes the decision.
+The advantage of SGD is that since it moves in a spiky manner,it is possible that the loss function is having multiple local minimas,so it that case the spiky loss
+graph if went into the local minima might come out of it and then eventually reach global minima but since batch GD descent is smooth,it might get trapped in a local
+minima.
+The disadvantage is that it does not converge at the exact point where it was supposed to be,since it is converging in a spiky manner so it might go ahead or behind the
+exact minima.(Approximate solution)
