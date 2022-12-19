@@ -40,3 +40,4 @@ make a tradeoff between the accuracy of the parameter update and the time it tak
      If batch_size==number of rows=>Batch GD
 ***)Which is faster to converge??
     Given same number of epochs,stochastic GD will converge fast since it is taking more number of updates.
+    
